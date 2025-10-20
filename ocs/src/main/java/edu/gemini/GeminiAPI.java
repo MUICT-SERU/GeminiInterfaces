@@ -11,7 +11,7 @@ public interface GeminiAPI {
      *
      * @return a list of science plans
      */
-    ArrayList<AbstractSciencePlan> getAllSciencePlans();
+    public ArrayList<AbstractSciencePlan> getAllSciencePlans();
 
 
     /**
@@ -20,7 +20,7 @@ public interface GeminiAPI {
      * @param planNo the science plan number
      * @return the selected science plan
      */
-    AbstractSciencePlan getSciencePlanByNo(int planNo);
+    public AbstractSciencePlan getSciencePlanByNo(int planNo);
 
 
     /**
@@ -29,10 +29,10 @@ public interface GeminiAPI {
      * @param sp the science plan to be submitted
      * @return a string indicating the result of the submission
      */
-    String createSciencePlan(AbstractSciencePlan sp);
+    public String createSciencePlan(AbstractSciencePlan sp);
 
 
-    String submitSciencePlan(AbstractSciencePlan sp);
+    public String submitSciencePlan(AbstractSciencePlan sp);
 
 
     /**
@@ -42,7 +42,7 @@ public interface GeminiAPI {
      * @param stssp  the status to update (using SciencePlan.STATUS enum).
      * @return true=successful, false=failed
      */
-    boolean updateSciencePlanStatus(int planno, AbstractSciencePlan.STATUS stssp);
+    public boolean updateSciencePlanStatus(int planno, AbstractSciencePlan.STATUS stssp);
 
 
     /**
@@ -51,13 +51,13 @@ public interface GeminiAPI {
      * @param sp the science plan to be tested
      * @return a string indicating the result of the test
      */
-    String testSciencePlan(AbstractSciencePlan sp);
+    public String testSciencePlan(AbstractSciencePlan sp);
 
 
     /**
      * Delete all the science plans in the Gemini system (BE CAREFUL WHEN CALLING THIS).
      */
-    void deleteAllSciencePlans();
+    public void deleteAllSciencePlans();
 
 
     /**

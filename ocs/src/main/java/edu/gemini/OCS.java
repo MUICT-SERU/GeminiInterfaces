@@ -5,24 +5,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class OCS implements GeminiAPI {
+public class OCS implements GeminiAPI<SciencePlan, ObservingProgram, ObservingProgramConfigs, AstronomicalData> {
+
     @Override
-    public ArrayList<AbstractSciencePlan> getAllSciencePlans() {
+    public ArrayList<SciencePlan> getAllSciencePlans() {
         return null;
     }
 
     @Override
-    public AbstractSciencePlan getSciencePlanByNo(int planNo) {
+    public SciencePlan getSciencePlanByNo(int planNo) {
         return null;
     }
 
     @Override
-    public String createSciencePlan(AbstractSciencePlan sp) {
-        return null;
+    public String createSciencePlan(SciencePlan sciencePlan) {
+        return sciencePlan.getName();
     }
 
     @Override
-    public String submitSciencePlan(AbstractSciencePlan sp) {
+    public String submitSciencePlan(SciencePlan sciencePlan) {
         return null;
     }
 
@@ -32,7 +33,7 @@ public class OCS implements GeminiAPI {
     }
 
     @Override
-    public String testSciencePlan(AbstractSciencePlan sp) {
+    public String testSciencePlan(SciencePlan sciencePlan) {
         return null;
     }
 
@@ -62,12 +63,12 @@ public class OCS implements GeminiAPI {
     }
 
     @Override
-    public AbstractAstronomicalData getAstronomicalData(AbstractSciencePlan sp) throws IOException {
+    public AstronomicalData getAstronomicalData(SciencePlan sciencePlan) throws IOException {
         return null;
     }
 
     @Override
-    public AbstractAstronomicalData removeAstronomicalData(AbstractSciencePlan sp, int index) throws IOException {
+    public AstronomicalData removeAstronomicalData(SciencePlan sciencePlan, int index) throws IOException {
         return null;
     }
 
@@ -112,7 +113,7 @@ public class OCS implements GeminiAPI {
     }
 
     @Override
-    public AbstractObservingProgram createObservingProgram(AbstractSciencePlan sp, String opticsPrimary, double fStop, double opticsSecondaryRMS, double scienceFoldMirrorDegree, AbstractObservingProgramConfigs.FoldMirrorType scienceFoldMirrorType, int moduleContent, AbstractObservingProgramConfigs.CalibrationUnit calibrationUnit, AbstractObservingProgramConfigs.LightType lightType, AbstractTelePositionPair[] telePositionPair) {
+    public ObservingProgram createObservingProgram(AbstractSciencePlan sp, String opticsPrimary, double fStop, double opticsSecondaryRMS, double scienceFoldMirrorDegree, AbstractObservingProgramConfigs.FoldMirrorType scienceFoldMirrorType, int moduleContent, AbstractObservingProgramConfigs.CalibrationUnit calibrationUnit, AbstractObservingProgramConfigs.LightType lightType, AbstractTelePositionPair[] telePositionPair) {
         return null;
     }
 
@@ -122,7 +123,7 @@ public class OCS implements GeminiAPI {
     }
 
     @Override
-    public AbstractObservingProgram getObservingProgramBySciencePlan(AbstractSciencePlan sp) {
+    public ObservingProgram getObservingProgramBySciencePlan(AbstractSciencePlan sp) {
         return null;
     }
 

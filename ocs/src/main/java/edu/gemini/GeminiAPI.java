@@ -5,13 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public interface GeminiAPI {
+public interface GeminiAPI<
+        SP extends AbstractSciencePlan,
+        OP extends AbstractObservingProgram,
+        OPC extends AbstractObservingProgramConfigs,
+        AD extends AbstractAstronomicalData
+        > {
     /**
      * Get all the science plans in the Gemini system
      *
      * @return a list of science plans
      */
-    public ArrayList<AbstractSciencePlan> getAllSciencePlans();
+    public ArrayList<SP> getAllSciencePlans();
 
 
     /**
@@ -20,7 +25,7 @@ public interface GeminiAPI {
      * @param planNo the science plan number
      * @return the selected science plan
      */
-    public AbstractSciencePlan getSciencePlanByNo(int planNo);
+    public SP getSciencePlanByNo(int planNo);
 
 
     /**
@@ -29,10 +34,10 @@ public interface GeminiAPI {
      * @param sp the science plan to be submitted
      * @return a string indicating the result of the submission
      */
-    public String createSciencePlan(AbstractSciencePlan sp);
+    public String createSciencePlan(SP sp);
 
 
-    public String submitSciencePlan(AbstractSciencePlan sp);
+    public String submitSciencePlan(SP sp);
 
 
     /**
@@ -51,7 +56,7 @@ public interface GeminiAPI {
      * @param sp the science plan to be tested
      * @return a string indicating the result of the test
      */
-    public String testSciencePlan(AbstractSciencePlan sp);
+    public String testSciencePlan(SP sp);
 
 
     /**
@@ -98,7 +103,7 @@ public interface GeminiAPI {
      * @param sp the science plan to get the astronomical data
      * @return astronomical data ({@link edu.gemini.app.ocs.model.AstronomicalData}), or null if the plan is not complete yet.
      */
-    AbstractAstronomicalData getAstronomicalData(AbstractSciencePlan sp) throws IOException;
+    AD getAstronomicalData(SP sp) throws IOException;
 
 
     /***
@@ -108,7 +113,7 @@ public interface GeminiAPI {
      * @return the updated astronomical data
      * @throws IOException
      */
-    AbstractAstronomicalData removeAstronomicalData(AbstractSciencePlan sp, int index) throws IOException;
+    AD removeAstronomicalData(SP sp, int index) throws IOException;
 
 
     /**
@@ -202,21 +207,21 @@ public interface GeminiAPI {
      * Get the list of supported fold mirror types
      * @return a list of supported fold mirror types
      */
-    AbstractObservingProgramConfigs.FoldMirrorType[] getFoldMirrorTypes();
+    OPC.FoldMirrorType[] getFoldMirrorTypes();
 
 
     /**
      * Get the list of supported calibration units
      * @return a list of supported calibration units
      */
-    AbstractObservingProgramConfigs.CalibrationUnit[] getCalibrationUnits();
+    OPC.CalibrationUnit[] getCalibrationUnits();
 
 
     /**
      * Get the list of supported light types
      * @return a list of supported light types
      */
-    AbstractObservingProgramConfigs.LightType[] getLightTypes();
+    OPC.LightType[] getLightTypes();
 
 
     /**
@@ -262,14 +267,14 @@ public interface GeminiAPI {
      * @param telePositionPair A list of tele position pairs that will be issued to control the movements of the telescope.
      * @return The created observing program
      */
-    AbstractObservingProgram createObservingProgram(AbstractSciencePlan sp, String opticsPrimary,
+    OP createObservingProgram(AbstractSciencePlan sp, String opticsPrimary,
                                             double fStop,
                                             double opticsSecondaryRMS,
                                             double scienceFoldMirrorDegree,
-                                            AbstractObservingProgramConfigs.FoldMirrorType scienceFoldMirrorType,
+                                            OPC.FoldMirrorType scienceFoldMirrorType,
                                             int moduleContent,
-                                                    AbstractObservingProgramConfigs.CalibrationUnit calibrationUnit,
-                                                    AbstractObservingProgramConfigs.LightType lightType,
+                                                    OPC.CalibrationUnit calibrationUnit,
+                                                    OPC.LightType lightType,
                                             AbstractTelePositionPair[] telePositionPair);
 
 
@@ -285,7 +290,7 @@ public interface GeminiAPI {
      * @param sp The science plan
      * @return The observing program
      */
-    public AbstractObservingProgram getObservingProgramBySciencePlan(AbstractSciencePlan sp);
+    public OP getObservingProgramBySciencePlan(AbstractSciencePlan sp);
 
     /***
      * Get the default configuration of the Gemini system as a JSON file.
